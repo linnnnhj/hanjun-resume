@@ -77,9 +77,9 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .icon {
+        .icon, .fab, .fas {
             margin-right: 10px;
-            color: #3498db;
+            color: #800080; 
         }
 
         .profile-pic {
@@ -101,6 +101,13 @@
             margin: 0 10px;
         }
 
+        .welcome-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #3498db;
+            animation: welcomeAnimation 2s ease-in-out infinite;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -110,6 +117,12 @@
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0); }
+        }
+
+        @keyframes welcomeAnimation {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -131,11 +144,12 @@
     <div class="container">
         <img src="https://raw.githubusercontent.com/linnnnhj/hanjun-resume/main/Professional%20Headshot.jpg" alt="Profile Picture" class="profile-pic">
         <h1>Hanjun(Jessica) Lin</h1>
-           <div class="contact-info">
+        <div class="welcome-message">Welcome to My Online Resume!</div>
+        <div class="contact-info">
             <p>Boston, MA · <a href="mailto:jessicalinhj@gmail.com">jessicalinhj@gmail.com</a> · <a href="http://www.linkedin.com/in/hanjun-lin"><i class="fab fa-linkedin icon"></i>LinkedIn</a> · 509-563-9023</p>
             <p><a href="index-cn.html"><i class="fas fa-language icon"></i> 查看中文简历 / View Chinese Resume</a></p>
         </div>
-        
+
         <div class="section">
             <h2><i class="fas fa-graduation-cap icon"></i>Education</h2>
             <p><strong>Bachelor of Arts, Economics and Psychology, Boston University</strong> (August 2023 - June 2026)</p>
