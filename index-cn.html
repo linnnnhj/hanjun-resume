@@ -1,244 +1,549 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>林菡君(Jessica) - 在线简历</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            color: #333;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林菡君 Hanjun (Jessica) Lin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1c1a17;
+    --bg-soft:#232019;
+    --card:#28241d;
+    --ink:#f3ecdd;
+    --ink-dim:#b6a98f;
+    --ink-faint:#8a7f6a;
+    --brass:#c79a4b;
+    --brass-bright:#e7bd72;
+    --onair:#c1442c;
+    --hair:rgba(199,154,75,.22);
+    --font-display:'Fraunces','Noto Serif SC',serif;
+    --font-body:'Inter','Noto Sans SC',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.lang-zh [lang="en"]{display:none;}
+  body.lang-en [lang="zh"]{display:none;}
 
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+  ::selection{background:var(--brass);color:#1c1a17;}
 
-        h1, h2 {
-            color: #2c3e50;
-        }
+  a{color:var(--brass-bright);text-decoration:none;border-bottom:1px solid rgba(231,189,114,.35);transition:border-color .25s ease, color .25s ease;}
+  a:hover{border-color:var(--brass-bright);color:#fff;}
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
-        }
+  .noise{
+    position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;mix-blend-mode:overlay;
+    background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 1px);
+    background-size:3px 3px;
+  }
 
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #34495e;
-        }
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 6vw;
+    background:rgba(28,26,23,.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--hair);
+  }
+  .topbar .mark{
+    font-family:var(--font-display);
+    font-weight:600;font-size:1rem;letter-spacing:.03em;
+    color:var(--ink);
+  }
+  .mark .dot{color:var(--onair);}
 
-        a {
-            color: #800080;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+  .lang-toggle{
+    display:flex;align-items:center;gap:8px;
+    font-family:var(--font-body);font-size:.72rem;letter-spacing:.12em;
+    color:var(--ink-dim);
+  }
+  .lang-toggle button{
+    all:unset;cursor:pointer;
+    position:relative;
+    width:64px;height:28px;border-radius:999px;
+    background:linear-gradient(180deg,#332c22,#211d17);
+    border:1px solid var(--hair);
+    display:flex;align-items:center;
+  }
+  .lang-toggle .knob{
+    position:absolute;top:2px;left:2px;
+    width:22px;height:22px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--brass-bright), var(--brass) 70%);
+    box-shadow:0 1px 3px rgba(0,0,0,.5);
+    transition:transform .3s cubic-bezier(.65,0,.35,1);
+  }
+  body.lang-en .lang-toggle .knob{transform:translateX(36px);}
+  .lang-toggle .labels{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 8px;font-size:.62rem;font-weight:600;letter-spacing:.06em;
+    color:var(--ink-faint);
+  }
 
-        a:hover {
-            color: #6a0dad;
-        }
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:14vh 6vw 10vh;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:40px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:-20%;
+    background:radial-gradient(ellipse at 70% 20%, rgba(199,154,75,.12), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-text{position:relative;z-index:1;max-width:640px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--onair);font-weight:600;margin-bottom:22px;
+  }
+  .eyebrow .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--onair);
+    box-shadow:0 0 8px var(--onair);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 
-        .section {
-            margin-bottom: 30px;
-        }
+  h1.name{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    margin:0 0 6px;
+    color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .name em{font-style:italic;color:var(--brass-bright);font-weight:500;}
+  .role-line{
+    font-size:1rem;letter-spacing:.04em;color:var(--ink-dim);
+    margin-bottom:26px;
+  }
+  .role-line span.sep{color:var(--brass);margin:0 10px;}
+  .tagline{
+    font-family:var(--font-display);font-style:italic;font-weight:400;
+    font-size:1.3rem;color:var(--ink);
+    border-left:2px solid var(--brass);
+    padding-left:18px;margin:0 0 30px;
+    max-width:520px;
+  }
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:6px 16px;
+    font-size:.85rem;color:var(--ink-dim);
+  }
+  .contact-row a{color:var(--ink-dim);border-bottom:1px solid var(--hair);}
+  .contact-row a:hover{color:var(--brass-bright);}
 
-        .section ul {
-            list-style-type: none;
-            padding: 0;
-        }
+  /* ---------- dial graphic ---------- */
+  .dial-wrap{
+    position:relative;z-index:1;
+    flex-shrink:0;
+    width:220px;height:220px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .dial-wrap img{
+    width:150px;height:150px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--brass);
+    box-shadow:0 0 0 8px var(--bg-soft), 0 0 40px rgba(199,154,75,.15);
+    position:relative;z-index:2;
+  }
+  .dial-ring{position:absolute;inset:0;}
+  .dial-ring circle{fill:none;stroke:var(--hair);stroke-width:1;}
+  .dial-ring .tick{stroke:var(--ink-faint);stroke-width:2;}
+  .dial-ring .needle{
+    stroke:var(--onair);stroke-width:2;stroke-linecap:round;
+    transform-origin:110px 110px;
+    animation:sway 5s ease-in-out infinite alternate;
+  }
+  @keyframes sway{
+    0%{transform:rotate(-8deg);}
+    100%{transform:rotate(10deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dial-ring .needle{animation:none;}
+    .eyebrow .pulse{animation:none;}
+  }
 
-        .section ul li {
-            background: #ecf0f1;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  @media (max-width: 760px){
+    .hero{flex-direction:column-reverse;text-align:left;padding-top:12vh;}
+    .dial-wrap{width:150px;height:150px;}
+    .dial-wrap img{width:110px;height:110px;}
+    .dial-ring{transform:scale(.7);transform-origin:top left;}
+  }
 
-        .section ul li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+  /* ---------- sections ---------- */
+  main{max-width:800px;margin:0 auto;padding:0 6vw 10vh;position:relative;z-index:1;}
+  section{padding:64px 0;border-top:1px solid var(--hair);}
+  section:first-of-type{border-top:none;}
+  .section-head{margin-bottom:34px;}
+  h2.section-title{
+    font-family:var(--font-display);font-weight:600;
+    font-size:1.7rem;color:var(--ink);margin:6px 0 0;
+  }
 
-        .icon, .fab, .fas {
-            margin-right: 10px;
-            color: #800080;
-        }
+  .entry{
+    background:var(--card);
+    border:1px solid var(--hair);
+    border-left:3px solid var(--brass);
+    border-radius:4px;
+    padding:22px 24px;
+    margin-bottom:16px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .entry:hover{
+    transform:translateX(3px);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+    border-left-color:var(--brass-bright);
+  }
+  .entry-head{
+    display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;
+    margin-bottom:4px;
+  }
+  .entry-role{font-family:var(--font-display);font-weight:600;font-size:1.08rem;color:var(--ink);}
+  .entry-dates{font-size:.78rem;color:var(--brass-bright);letter-spacing:.04em;white-space:nowrap;font-family:var(--font-body);}
+  .entry-org{font-size:.9rem;color:var(--ink-dim);margin-bottom:14px;}
+  .entry ul{margin:0;padding:0;list-style:none;}
+  .entry li{
+    position:relative;padding-left:18px;margin:9px 0;
+    font-size:.92rem;color:var(--ink);opacity:.92;
+  }
+  .entry li::before{
+    content:"—";position:absolute;left:0;color:var(--brass);
+  }
 
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: block;
-            border: 5px solid #800080;
-            animation: float 3s ease-in-out infinite;
-        }
+  .edu-block{margin-bottom:22px;}
+  .edu-block:last-child{margin-bottom:0;}
 
-        .contact-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:600px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:20px;
+  }
+  .skill-card h3{
+    font-family:var(--font-body);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--brass-bright);margin:0 0 10px;
+  }
+  .skill-card p{margin:0;font-size:.92rem;color:var(--ink);}
 
-        .contact-info a {
-            margin: 0 10px;
-            color: #800080;
-        }
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--hair);
+    padding:50px 6vw 60px;
+    text-align:center;
+  }
+  footer .sign{
+    font-family:var(--font-display);font-style:italic;font-size:1.15rem;color:var(--ink-dim);margin-bottom:18px;
+  }
+  footer .contact-row{justify-content:center;}
+  footer .fine{margin-top:30px;font-size:.72rem;color:var(--ink-faint);letter-spacing:.05em;}
 
-        .welcome-message {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #800080;
-            animation: welcomeAnimation 2s ease-in-out infinite;
-        }
-
-        .title-line {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #555;
-            margin-top: -5px;
-            margin-bottom: 15px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes welcomeAnimation {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                padding: 15px;
-            }
-        }
-    </style>
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
-<body>
-    <div class="container">
-        <img src="https://raw.githubusercontent.com/linnnnhj/hanjun-resume/main/Professional%20Headshot.jpg" alt="个人照片" class="profile-pic">
-        <h1>林菡君(Jessica)</h1>
-        <div class="title-line">HR / HRBP · Data Insights · Marketing &amp; Comms · Research</div>
-        <div class="welcome-message">欢迎来到我的在线简历！</div>
-        <div class="contact-info">
-            <p>中国，上海· <a href="mailto:jessicalinhj@gmail.com">jessicalinhj@gmail.com</a> · <a href="http://www.linkedin.com/in/hanjun-lin"><i class="fab fa-linkedin icon"></i>LinkedIn领英</a> · 手机号：17721431143（同微信） · 微信：L-01231</p>
-            <p><a href="index.html"><i class="fas fa-language icon"></i> View English Resume / 查看英文简历</a></p>
-        </div>
+<body class="lang-zh">
+<div class="noise"></div>
 
-        <div class="section">
-            <h2><i class="fas fa-graduation-cap icon"></i>教育背景</h2>
-            <p><strong>波士顿大学 Boston University，美国，马塞诸塞州，波士顿，经济学与心理学双学士</strong> (2023年8月 - 2026年6月)</p>
-            <ul>
-                <li>GPA: 3.5/4.0 | 院长荣誉名单：2023年秋季、2024年春季、2025年春季</li>
-                <li>相关课程：统计分析、微观/宏观经济学、劳动经济学、发展经济学、信息经济学、实证经济学（Stata）、经济历史、行为/认知/人格心理学、实验心理学、病理心理学、教育心理学、酒店管理学</li>
-            </ul>
+<div class="topbar">
+  <div class="mark">林菡君 <span class="dot">·</span> Jessica Lin</div>
+  <div class="lang-toggle">
+    <button id="langBtn" aria-pressed="false" aria-label="Toggle language / 切换语言">
+      <span class="labels"><span>中</span><span>EN</span></span>
+      <span class="knob"></span>
+    </button>
+  </div>
+</div>
 
-            <p><strong>曼荷莲学院 Mount Holyoke College，美国，马塞诸塞州，南哈德利，心理学学士（已转学至波士顿大学）</strong> (2022年8月 - 2023年6月)</p>
-            <ul>
-                <li>GPA: 3.75/4.0</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2><i class="fas fa-briefcase icon"></i>工作经历</h2>
-            <p><strong>米高蒲志集团 PageGroup (Michael Page) - Page Executive，中国，上海</strong> (2025年7月 - 2025年8月)</p>
-            <p><em>高管招聘顾问实习生</em></p>
-            <ul>
-                <li>聚焦消费品零售与服务领域高端人才招聘，专注C-level及董事级岗位，覆盖FMCG、Consumer Insight等方向，已参与并支持合伙人推进≥4个高管职位的候选人初筛及面试流程，已成功推动3位高管候选人进入客户面试阶段，1位进入最终offer阶段</li>
-                <li>每日通过公司系统及LinkedIn筛选200+候选人，主动联络15+人选；独立完成Job Brief沟通及CINT-candidate interview，深入了解候选人背景，并同步更新简历与信息至系统，确保招聘流程闭环</li>
-                <li>协助合伙人推进后续流程，包括面试安排、反馈沟通等；同时负责行业mapping、竞对调研及组织架构分析</li>
-            </ul>
-
-            <p><strong>罗德传播集团 Ruder Finn Group，中国，上海</strong> (2025年5月 - 2025年6月)</p>
-            <p><em>人力资源HR实习生</em></p>
-            <ul>
-                <li>全程统筹招聘流程，包括筛选简历、电话初面、向leader汇报推荐候选人、安排面试、发送offer、办理入/离职手续及接待；同时协调财务工资申请与IT硬件配置；根据岗位JD快速响应招聘需求，对接各部门leader，协调候选人与团队沟通，推动流程高效推进</li>
-                <li>使用Excel维护人员数据库与岗位跟进表，持续优化流程效率；每日处理100+招聘相关信息，与候选人及团队高效沟通；每日进行10+候选人电话初筛，负责管理7+岗位的招聘全流程</li>
-            </ul>
-
-            <p><strong>上海广播电视台 Shanghai Media Group (SMG)，中国，上海</strong> (2024年5月 - 2024年7月)</p>
-            <p><em>实习编辑</em></p>
-            <ul>
-                <li>撰写《直通990》节目稿件，用于微信公众号及阿基米德App推广，单篇文章最高阅读量21,000+</li>
-                <li>统筹直播全流程，包括编辑访谈提纲与润色采访问题，每日筛选30+热线电话并提炼热点话题，负责嘉宾预采访、优质来电接入及直播节奏把控，协同主持人与技术团队保障播出质量；将2小时采访音频提炼为1,500字核心内容摘要</li>
-            </ul>
-
-            <p><strong>WPP集团 Wire and Plastic Products plc，中国，上海</strong> (2023年5月 - 2023年7月)</p>
-            <p><em>客户执行AE实习生</em></p>
-            <ul>
-                <li>深入分析竞品特性并于部门会议汇报，洞察市场趋势与消费偏好，支持战略决策及产品开发</li>
-                <li>设计Excel模板优化部门流程与时间线规划；参与客户会议，独立完成中英文会议纪要并于会后20分钟内提交</li>
-                <li>调研社交媒体、电商平台及搜索引擎，为产品包装、PDP及POSM提供设计参考并对接创意部门</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2><i class="fas fa-trophy icon"></i>领导力与职业发展经历</h2>
-            <p><strong>波士顿大学全球中国链接 Boston University Global China Connection，美国，马塞诸塞州，波士顿</strong> (2024年12月 - 2025年5月)</p>
-            <p><em>联合主席</em></p>
-            <ul>
-                <li>管理40+家企业赞助方；运营微信公众号（浏览量3,000+）、抖音（播放量32,000+）及LinkedIn账号（曝光5,000+），建立并管理300+人新生群；总策划23场职发活动，包括跨校合作、工作坊、实习宣讲会等</li>
-                <li>负责LinkedIn/Handshake等对外拓展，链接波士顿校友、教授等担任活动嘉宾；策划并执行2028届波士顿大学新生上海、北京、广州三城见面会，并担任三场主持人</li>
-            </ul>
-
-            <p><strong>赛诺菲 AIM 导师计划 Sanofi AIM Mentorship Program，美国，波士顿</strong> (2025年10月 - 2026年5月)</p>
-            <p><em>学员</em></p>
-            <ul>
-                <li>入选赛诺菲AIM导师计划，与全球HR、AI及数字化方向业务领导者开展长期一对一交流，围绕领导力、未来工作模式、AI与HR及人才战略等议题展开讨论</li>
-                <li>参与Business Immersion、企业参访、职业发展分享及跨mentee（学员）networking等活动，获得导师对沟通能力、思辨能力及职业潜力的高度认可</li>
-            </ul>
-
-            <p><strong>LightHouse（早期创业公司及创业者社区），美国，波士顿</strong> (2026年3月 - 至今)</p>
-            <p><em>HR与招聘负责人</em></p>
-            <ul>
-                <li>主导 LightHouse 社群及项目制岗位的 0-to-1 HR 与招聘体系搭建，覆盖岗位定位、JD 审核、候选人评估标准、初筛流程、招聘渠道规划及候选人沟通，支持团队规范化运营；搭建轻量化招聘与团队管理机制，包括岗位职责拆解、试用期评估结构、KPI/产出导向评估、soft deadline 机制及招聘相关沟通材料，提升团队协作与人才筛选效率</li>
-                <li>深度参与多场工作坊、圆桌讨论、线下交流活动及合作项目的全流程执行与宣发，涵盖 AI、OpenClaw、创业法律基础、Harvard China Forum 相关 afterparty等，并支持 BytePlus（字节跳动旗下企业技术服务平台）、钛动科技等企业伙伴的合作沟通与项目推进</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2><i class="fas fa-code icon"></i>技能</h2>
-            <ul>
-                <li><strong>语言：</strong> 英语，中文（普通话、上海话）</li>
-                <li><strong>熟练使用：</strong> Stata、NVivo、Microsoft Office Suite、Salesforce、Canva</li>
-            </ul>
-        </div>
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow"><span class="pulse"></span><span lang="zh">ON AIR · 正在直播</span><span lang="en">ON AIR</span></div>
+    <h1 class="name">
+      <span lang="zh">林菡君 <em>Jessica</em></span>
+      <span lang="en">Hanjun <em>Jessica</em> Lin</span>
+    </h1>
+    <div class="role-line">
+      <span lang="zh">HR / HRBP<span class="sep">·</span>数据洞察<span class="sep">·</span>市场与传播<span class="sep">·</span>研究</span>
+      <span lang="en">HR / HRBP<span class="sep">·</span>Data Insights<span class="sep">·</span>Marketing &amp; Comms<span class="sep">·</span>Research</span>
     </div>
+    <p class="tagline">
+      <span lang="zh">从直播间的耳机，到招聘桌前的名单——我在人和故事之间，找准信号。</span>
+      <span lang="en">From a radio headset to a hiring shortlist — I find the signal in people and their stories.</span>
+    </p>
+    <div class="contact-row">
+      <span lang="zh">中国，上海（意向城市：上海，接受调剂）</span>
+      <span lang="en">Shanghai, China (open to relocation within China)</span>
+      <a href="mailto:jessicalinhj@gmail.com">jessicalinhj@gmail.com</a>
+      <a href="http://www.linkedin.com/in/hanjun-lin">LinkedIn</a>
+      <span>17721431143<span lang="zh">（同微信 L-01231）</span><span lang="en"> (WeChat: L-01231)</span></span>
+    </div>
+  </div>
+  <div class="dial-wrap">
+    <img src="https://raw.githubusercontent.com/linnnnhj/hanjun-resume/main/Professional%20Headshot.jpg" alt="Jessica Lin">
+    <svg class="dial-ring" viewBox="0 0 220 220">
+      <circle cx="110" cy="110" r="105"></circle>
+      <circle cx="110" cy="110" r="92"></circle>
+      <g class="tick">
+        <line x1="110" y1="8" x2="110" y2="18"></line>
+        <line x1="110" y1="202" x2="110" y2="212"></line>
+        <line x1="8" y1="110" x2="18" y2="110"></line>
+        <line x1="202" y1="110" x2="212" y2="110"></line>
+      </g>
+      <line class="needle" x1="110" y1="110" x2="110" y2="14"></line>
+    </svg>
+  </div>
+</section>
+
+<main>
+
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pulse"></span><span>ON AIR</span></div>
+      <h2 class="section-title"><span lang="zh">工作经历</span><span lang="en">Professional Experience</span></h2>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">高管招聘顾问实习生</span><span lang="en">Executive Search Consultant Intern</span></span>
+        <span class="entry-dates"><span lang="zh">2025年7月 – 2025年8月</span><span lang="en">Jul 2025 – Aug 2025</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">米高蒲志集团 PageGroup (Michael Page) · Page Executive，中国，上海</span>
+        <span lang="en">PageGroup (Michael Page) · Page Executive, Shanghai, China</span>
+      </div>
+      <ul>
+        <li><span lang="zh">聚焦消费品零售与服务领域高端人才招聘，专注C-level及董事级岗位，覆盖FMCG、Consumer Insight等方向，已参与并支持合伙人推进≥4个高管职位的候选人初筛及面试流程，已成功推动3位高管候选人进入客户面试阶段，1位进入最终offer阶段</span>
+            <span lang="en">Supported senior-level search mandates in Consumer &amp; Retail, focusing on C-suite and director-level roles across FMCG and Consumer Insight; contributed to candidate screening and interview coordination for 4+ executive searches, helping advance 3 candidates to client interviews and 1 to a final offer</span></li>
+        <li><span lang="zh">每日通过公司系统及LinkedIn筛选200+候选人，主动联络15+人选；独立完成Job Brief沟通及CINT-candidate interview，深入了解候选人背景，并同步更新简历与信息至系统，确保招聘流程闭环</span>
+            <span lang="en">Sourced 200+ candidates daily via internal systems and LinkedIn, proactively reaching out to 15+ prospects; independently ran job briefings and CINT candidate interviews, keeping resumes and records current in the system</span></li>
+        <li><span lang="zh">协助合伙人推进后续流程，包括面试安排、反馈沟通等；同时负责行业mapping、竞对调研及组织架构分析</span>
+            <span lang="en">Assisted partners with downstream process management, including interview scheduling and feedback, alongside industry mapping, competitor research, and org-structure analysis</span></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">人力资源HR实习生</span><span lang="en">HR Intern</span></span>
+        <span class="entry-dates"><span lang="zh">2025年5月 – 2025年6月</span><span lang="en">May 2025 – Jun 2025</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">罗德传播集团 Ruder Finn Group，中国，上海</span>
+        <span lang="en">Ruder Finn Group, Shanghai, China</span>
+      </div>
+      <ul>
+        <li><span lang="zh">全程统筹招聘流程，包括筛选简历、电话初面、向leader汇报推荐候选人、安排面试、发送offer、办理入/离职手续及接待；同时协调财务工资申请与IT硬件配置；根据岗位JD快速响应招聘需求，对接各部门leader，协调候选人与团队沟通，推动流程高效推进</span>
+            <span lang="en">Owned the full recruitment cycle — resume screening, phone interviews, candidate recommendations to team leads, interview scheduling, offer issuance, and onboarding/offboarding — while coordinating payroll requests and IT equipment setup; responded quickly to hiring needs across departments to keep pipelines moving</span></li>
+        <li><span lang="zh">使用Excel维护人员数据库与岗位跟进表，持续优化流程效率；每日处理100+招聘相关信息，与候选人及团队高效沟通；每日进行10+候选人电话初筛，负责管理7+岗位的招聘全流程</span>
+            <span lang="en">Maintained candidate and role-tracking databases in Excel to streamline workflow; managed 100+ recruiting communications and 10+ candidate phone screens daily, running full-cycle recruiting for 7+ open roles</span></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">实习编辑</span><span lang="en">Editorial Intern</span></span>
+        <span class="entry-dates"><span lang="zh">2024年5月 – 2024年7月</span><span lang="en">May 2024 – Jul 2024</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">上海广播电视台 Shanghai Media Group (SMG)，中国，上海</span>
+        <span lang="en">Shanghai Media Group (SMG), Shanghai, China</span>
+      </div>
+      <ul>
+        <li><span lang="zh">撰写《直通990》节目稿件，用于微信公众号及阿基米德App推广，单篇文章最高阅读量21,000+</span>
+            <span lang="en">Wrote scripts for "ZhiTong 990," driving WeChat and Ajimide App articles to a peak of 21,000+ reads</span></li>
+        <li><span lang="zh">统筹直播全流程，包括编辑访谈提纲与润色采访问题，每日筛选30+热线电话并提炼热点话题，负责嘉宾预采访、优质来电接入及直播节奏把控，协同主持人与技术团队保障播出质量；将2小时采访音频提炼为1,500字核心内容摘要</span>
+            <span lang="en">Ran the full live-broadcast workflow — pre-interviewing guests, screening 30+ daily hotline calls for trending topics, managing live call-ins, and pacing interviews — coordinating with hosts and technical staff on air quality; condensed 2-hour interview recordings into 1,500-word summaries</span></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">客户执行AE实习生</span><span lang="en">Account Executive Intern</span></span>
+        <span class="entry-dates"><span lang="zh">2023年5月 – 2023年7月</span><span lang="en">May 2023 – Jul 2023</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">WPP集团 Wire and Plastic Products plc，中国，上海</span>
+        <span lang="en">WPP (Wire and Plastic Products plc), Shanghai, China</span>
+      </div>
+      <ul>
+        <li><span lang="zh">深入分析竞品特性并于部门会议汇报，洞察市场趋势与消费偏好，支持战略决策及产品开发</span>
+            <span lang="en">Analyzed competitor positioning and presented findings at team meetings to inform strategy and product development</span></li>
+        <li><span lang="zh">设计Excel模板优化部门流程与时间线规划；参与客户会议，独立完成中英文会议纪要并于会后20分钟内提交</span>
+            <span lang="en">Built Excel templates to streamline department workflows and timelines; independently drafted bilingual meeting minutes and delivered them within 20 minutes of client meetings</span></li>
+        <li><span lang="zh">调研社交媒体、电商平台及搜索引擎，为产品包装、PDP及POSM提供设计参考并对接创意部门</span>
+            <span lang="en">Researched social platforms, e-commerce sites, and search engines to inform packaging, PDP, and POSM design references for the creative team</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pulse"></span><span>ON AIR</span></div>
+      <h2 class="section-title"><span lang="zh">领导力与职业发展经历</span><span lang="en">Leadership &amp; Professional Development</span></h2>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">联合主席</span><span lang="en">Co-President</span></span>
+        <span class="entry-dates"><span lang="zh">2024年12月 – 2025年5月</span><span lang="en">Dec 2024 – May 2025</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">波士顿大学全球中国链接 Boston University Global China Connection，美国，波士顿</span>
+        <span lang="en">Boston University Global China Connection (BUGCC), Boston, MA</span>
+      </div>
+      <ul>
+        <li><span lang="zh">管理40+家企业赞助方；运营微信公众号（浏览量3,000+）、抖音（播放量32,000+）及LinkedIn账号（曝光5,000+），建立并管理300+人新生群；总策划23场职发活动，包括跨校合作、工作坊、实习宣讲会等</span>
+            <span lang="en">Managed 40+ corporate sponsors; grew WeChat (3,000+ views), Douyin (32,000+ views), and LinkedIn (5,000+ impressions) presence, and built a 300+ member incoming-class community; planned 23 career-development events including cross-university collaborations, workshops, and recruiting info sessions</span></li>
+        <li><span lang="zh">负责LinkedIn/Handshake等对外拓展，链接波士顿校友、教授等担任活动嘉宾；策划并执行2028届波士顿大学新生上海、北京、广州三城见面会，并担任三场主持人</span>
+            <span lang="en">Led external outreach via LinkedIn/Handshake to bring BU alumni and faculty in as event guests; organized and emceed three-city (Shanghai/Beijing/Guangzhou) orientation meetups for the BU Class of 2028</span></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">学员</span><span lang="en">Mentee</span></span>
+        <span class="entry-dates"><span lang="zh">2025年10月 – 2026年5月</span><span lang="en">Oct 2025 – May 2026</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">赛诺菲 AIM 导师计划 Sanofi AIM Mentorship Program，美国，波士顿</span>
+        <span lang="en">Sanofi AIM Mentorship Program, Boston, MA</span>
+      </div>
+      <ul>
+        <li><span lang="zh">入选赛诺菲AIM导师计划，与全球HR、AI及数字化方向业务领导者开展长期一对一交流，围绕领导力、未来工作模式、AI与HR及人才战略等议题展开讨论</span>
+            <span lang="en">Selected for Sanofi's AIM Mentorship Program for ongoing 1:1 dialogue with global HR, AI, and digital business leaders on leadership, the future of work, and AI's role in HR and talent strategy</span></li>
+        <li><span lang="zh">参与Business Immersion、企业参访、职业发展分享及跨mentee（学员）networking等活动，获得导师对沟通能力、思辨能力及职业潜力的高度认可</span>
+            <span lang="en">Took part in business immersions, company visits, career-development sessions, and cross-mentee networking, earning strong feedback on communication, critical thinking, and career potential</span></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">HR 与招聘负责人</span><span lang="en">HR &amp; Recruiting Lead</span></span>
+        <span class="entry-dates"><span lang="zh">2026年3月 – 至今</span><span lang="en">Mar 2026 – Present</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">LightHouse（早期创业公司及创业者社区），美国，波士顿</span>
+        <span lang="en">LightHouse (early-stage startup &amp; founder community), Boston, MA</span>
+      </div>
+      <ul>
+        <li><span lang="zh">主导 LightHouse 社群及项目制岗位的 0-to-1 HR 与招聘体系搭建，覆盖岗位定位、JD 审核、候选人评估标准、初筛流程、招聘渠道规划及候选人沟通，支持团队规范化运营；搭建轻量化招聘与团队管理机制，包括岗位职责拆解、试用期评估结构、KPI/产出导向评估、soft deadline 机制及招聘相关沟通材料，提升团队协作与人才筛选效率</span>
+            <span lang="en">Built LightHouse's HR and recruiting function from the ground up for its community and project-based roles — covering role scoping, JD review, candidate evaluation criteria, screening, sourcing channels, and candidate communication — and set up lightweight team-management systems including role breakdowns, probation review structures, KPI/output-based evaluation, soft-deadline norms, and recruiting materials</span></li>
+        <li><span lang="zh">深度参与多场工作坊、圆桌讨论、线下交流活动及合作项目的全流程执行与宣发，涵盖 AI、OpenClaw、创业法律基础、Harvard China Forum 相关 afterparty等，并支持 BytePlus（字节跳动旗下企业技术服务平台）、钛动科技等企业伙伴的合作沟通与项目推进</span>
+            <span lang="en">Supported execution and promotion of workshops, roundtables, and partner events spanning AI, OpenClaw, startup-law fundamentals, and Harvard China Forum-adjacent gatherings, and helped coordinate collaborations with partners including BytePlus and TitanTech</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pulse"></span><span>ON AIR</span></div>
+      <h2 class="section-title"><span lang="zh">教育背景</span><span lang="en">Education</span></h2>
+    </div>
+
+    <div class="edu-block">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">经济学与心理学双学士</span><span lang="en">B.A. Economics &amp; Psychology (Double Major)</span></span>
+        <span class="entry-dates"><span lang="zh">2023年8月 – 2026年6月</span><span lang="en">Aug 2023 – Jun 2026</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">波士顿大学 Boston University，美国，波士顿</span>
+        <span lang="en">Boston University, Boston, MA</span>
+      </div>
+      <ul>
+        <li><span lang="zh">GPA: 3.5/4.0 ｜ 院长荣誉名单：2023年秋季、2024年春季、2025年春季</span>
+            <span lang="en">GPA: 3.5/4.0 | Dean's List: Fall 2023, Spring 2024, Spring 2025</span></li>
+        <li><span lang="zh">相关课程：统计分析、微观/宏观经济学、劳动经济学、发展经济学、信息经济学、实证经济学（Stata）、经济历史、行为/认知/人格心理学、实验心理学、病理心理学、教育心理学、酒店管理学</span>
+            <span lang="en">Coursework: Statistical Analysis, Micro/Macroeconomics, Labor Economics, Development Economics, Information Economics, Empirical Economics (Stata), Economic History, Behavioral/Cognitive/Personality Psychology, Experimental Psychology, Abnormal Psychology, Educational Psychology, Hospitality Management</span></li>
+      </ul>
+    </div>
+
+    <div class="edu-block">
+      <div class="entry-head">
+        <span class="entry-role"><span lang="zh">心理学学士（已转学至波士顿大学）</span><span lang="en">B.A. Psychology (transferred to BU)</span></span>
+        <span class="entry-dates"><span lang="zh">2022年8月 – 2023年6月</span><span lang="en">Aug 2022 – Jun 2023</span></span>
+      </div>
+      <div class="entry-org">
+        <span lang="zh">曼荷莲学院 Mount Holyoke College，美国，南哈德利</span>
+        <span lang="en">Mount Holyoke College, South Hadley, MA</span>
+      </div>
+      <ul>
+        <li>GPA: 3.75/4.0</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow"><span class="pulse"></span><span>ON AIR</span></div>
+      <h2 class="section-title"><span lang="zh">技能</span><span lang="en">Skills</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><span lang="zh">语言</span><span lang="en">Languages</span></h3>
+        <p><span lang="zh">英语，中文（普通话、上海话）</span><span lang="en">English, Mandarin Chinese, Shanghainese</span></p>
+      </div>
+      <div class="skill-card">
+        <h3><span lang="zh">熟练使用</span><span lang="en">Tools</span></h3>
+        <p>Stata, NVivo, Microsoft Office Suite, Salesforce, Canva</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="sign">
+    <span lang="zh">感谢收听，期待与你连线。</span>
+    <span lang="en">Thanks for tuning in — let's connect.</span>
+  </div>
+  <div class="contact-row">
+    <a href="mailto:jessicalinhj@gmail.com">jessicalinhj@gmail.com</a>
+    <a href="http://www.linkedin.com/in/hanjun-lin">LinkedIn</a>
+    <span>17721431143</span>
+  </div>
+  <div class="fine">© 2026 Hanjun (Jessica) Lin</div>
+</footer>
+
+<script>
+  var btn = document.getElementById('langBtn');
+  btn.addEventListener('click', function(){
+    var isZh = document.body.classList.contains('lang-zh');
+    document.body.classList.toggle('lang-zh', !isZh ? false : false);
+    if(isZh){
+      document.body.classList.remove('lang-zh');
+      document.body.classList.add('lang-en');
+      btn.setAttribute('aria-pressed','true');
+      document.documentElement.lang = 'en';
+    } else {
+      document.body.classList.remove('lang-en');
+      document.body.classList.add('lang-zh');
+      btn.setAttribute('aria-pressed','false');
+      document.documentElement.lang = 'zh-CN';
+    }
+  });
+
+  if('IntersectionObserver' in window){
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
 </body>
 </html>
